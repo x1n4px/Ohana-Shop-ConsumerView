@@ -1,0 +1,38 @@
+<div class="contenedor">
+  <div class="contenedorInterior">
+
+    <div class="cesta">
+      <h1>Mi cesta:</h1>
+      <ul>
+        <li *ngFor="let dato of cesta">
+          <h3>{{ dato.nombre }}</h3>
+          <div class="datos">
+            <img [src]="dato.imagen" alt="Imagen del producto">
+            <p>Precio: {{(dato.precioNeto + dato.precioNeto*(dato.ivaAsociado/100)).toFixed(2)}}€</p>
+            <mat-icon (click)="eliminarArticulo(dato)">delete</mat-icon>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+    <div class="pago">
+      <div class="cupon">
+        <label>¿Tienes un cupón de descuento?</label>
+        <div class="cupon-cont">
+          <input class="inputDest" type="text" placeholder="Introduce el cupón">
+          <button class="btnCupon">Aplicar</button>
+        </div>
+
+      </div>
+      <h3> Resumen del pedido </h3>
+      <div class="resumen-pedido">
+        <p>Subtotal <span>{{precioCesta.toFixed(2)}}</span></p>
+        <p>Gastos de envío estimados <span>{{ precioCesta > 49 ? 'GRATIS' : '4.99€' }}</span></p>
+
+        <p>Total* <span>{{ (precioCesta + ajusteTotal).toFixed(2) }}</span></p>
+      </div>
+      <button class="btnPago" (click)="modalPago()">Proceder al pago</button>
+    </div>
+
+  </div>
+</div>
